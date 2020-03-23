@@ -1,13 +1,14 @@
-create database QLBanHang
+﻿create database QLiBanHangMyPham
 go
-use QLBanHang
+use QLiBanHangMyPham
 go
 
 create table NguoiDung (
 	username nvarchar(20) not null,
-	pass nvarchar(200),
+	matKhau nvarchar(200),
 	SDT nvarchar(11),
 	email  nvarchar(50),
+	ghiChu nvarchar(500),
 	constraint PK_NguoiDung primary key (username) 
 )
 create table SanPham (
@@ -16,7 +17,8 @@ create table SanPham (
 	thuongHieu nvarchar(150),
 	NSX  date,
 	HSD date,
-	gia float,
+	giaNhap float,
+	giaBan float,
 	soLuong int,
 	moTa nvarchar(500),
 	constraint PK_SanPham primary key (maSP) 
@@ -26,6 +28,7 @@ create table KhachHangMua (
 	tenKH nvarchar(200),
 	SDT nvarchar(11),
 	email  nvarchar(50),
+	ghiChuKH  nvarchar(200),
 	constraint PK_KhachHang primary key (maKH) 
 )
 create table HoaDon (
@@ -34,8 +37,10 @@ create table HoaDon (
 	maKH nvarchar(20) not null,
 	maSP nvarchar(20) not null,
 	username nvarchar(20) not null,
-	ngay  date,
+	ngay date,
 	tongTien float,
+	shipper nvarchar(40),
+	ghiChuHĐ nvarchar(300),
 	constraint PK_HoaDon primary key (maHD),
 	constraint FK_HoaDon1 foreign key (maKH) references KhachHangMua(maKH),
 	constraint FK_HoaDon2 foreign key (maSP) references SanPham(maSP),
@@ -48,6 +53,8 @@ create table HoaDonChiTiet (
 	tongSoLuong int,
 	sale float,
 	daCK float,
+	tinhTrangThanhToan nvarchar(100) not null,
+	tinhTrangVanChuyen nvarchar(100) not null,
 	constraint PK_HoaDonChiTiet primary key (maHDCT),
 	constraint FK_HoaDonChiTiet1 foreign key (maHD) references HoaDon(maHD),
 )
