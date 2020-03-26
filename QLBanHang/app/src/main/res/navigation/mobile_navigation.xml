@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_trangChu">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.qlbanhang.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/nav_trangChu"
+        android:name="com.example.qlbanhang.ui.TrangChu.TrangChuFragment"
+        android:label="@string/menu_trangChu"
+        tools:layout="@layout/fragment_trangchu">
 
         <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
@@ -17,12 +17,12 @@
     </fragment>
     <fragment
         android:id="@+id/nav_home_second"
-        android:name="com.example.qlbanhang.ui.home.HomeSecondFragment"
+        android:name="com.example.qlbanhang.ui.TrangChu.HomeSecondFragment"
         android:label="@string/home_second"
         tools:layout="@layout/fragment_home_second">
         <action
             android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_trangChu" />
 
         <argument
             android:name="myArg"
@@ -30,14 +30,28 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.qlbanhang.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_sanPham"
+        android:name="com.example.qlbanhang.ui.SanPham.SanPhamFragment"
+        android:label="@string/menu_sanPham"
+        tools:layout="@layout/fragment_sanpham" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.qlbanhang.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_nguoiDung"
+        android:name="com.example.qlbanhang.ui.NguoiDung.NguoiDungFragment"
+        android:label="@string/menu_nguoiDung"
+        tools:layout="@layout/fragment_nguoidung" />
+    <fragment
+        android:id="@+id/nav_hoaDon"
+        android:name="com.example.qlbanhang.ui.HoaDon.HoaDonFragment"
+        android:label="@string/menu_hoaDon"
+        tools:layout="@layout/fragment_hoadon" />
+    <fragment
+        android:id="@+id/nav_thongKe"
+        android:name="com.example.qlbanhang.ui.ThongKe.ThongKeFragment"
+        android:label="@string/menu_thongKe"
+        tools:layout="@layout/fragment_thongke" />
+    <fragment
+        android:id="@+id/nav_thoat"
+        android:name="com.example.qlbanhang.ui.ThongKe.ThongKeFragment"
+        android:label="@string/menu_thoat" />
 </navigation>
