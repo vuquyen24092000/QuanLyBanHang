@@ -13,9 +13,11 @@ EditText edUsername, edPassword, edRepassword, edHoten, edGhiChu;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         edUsername=findViewById(R.id.edtUsername);
+        edPassword=findViewById(R.id);
 
     }
 
     public void dangKi(View view) {
+        finish();
     }
 }
