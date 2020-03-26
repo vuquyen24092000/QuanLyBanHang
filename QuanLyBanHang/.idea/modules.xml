@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/QuanLyBanHang.iml" filepath="$PROJECT_DIR$/QuanLyBanHang.iml" group="QuanLyBanHang" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="QuanLyBanHang/app" />
     </modules>
   </component>
 </project>
