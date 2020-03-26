@@ -31,7 +31,7 @@
             android:textColor="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đăng kí"/>
+            android:text="Đăng nhập"/>
         <Button
             android:background="#00D463"
             android:layout_marginLeft="32dp"
@@ -39,7 +39,7 @@
             android:onClick="signIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đăng nhập"/>
+            android:text="Đăng kí"/>
     </LinearLayout>
 
 </LinearLayout>
