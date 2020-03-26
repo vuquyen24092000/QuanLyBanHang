@@ -1,6 +1,6 @@
-﻿create database QLiBanHangMyPham
+﻿create database QuanLiBanHangMyPham
 go
-use QLiBanHangMyPham
+use QuanLiBanHangMyPham
 go
 
 create table NguoiDung (
@@ -18,6 +18,7 @@ create table SanPham (
 	NSX  date,
 	HSD date,
 	giaNhap float,
+	sale float,
 	giaBan float,
 	soLuong int,
 	moTa nvarchar(500),
