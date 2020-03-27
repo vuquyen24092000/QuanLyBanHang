@@ -36,7 +36,7 @@
             android:background="#00D463"
             android:layout_marginLeft="32dp"
             android:textColor="#FFFFFF"
-            android:onClick="signUp"
+            android:onClick="signIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đăng kí"/>
