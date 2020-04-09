@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".ui.SanPham.SanPhamFragment">
+    tools:context=".ui.SanPham.GioHang">
+
     <ListView
-        android:id="@+id/lv_sanPham"
+        android:id="@+id/lv_gioHang"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

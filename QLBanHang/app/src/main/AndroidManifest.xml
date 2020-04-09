@@ -9,6 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.SanPham.ThemThuongHieu"
+            android:parentActivityName=".ui.SanPham.ThuongHieu"/>
+        <activity android:name=".ui.SanPham.ThuongHieu"
+            android:parentActivityName=".ui.SanPham.ThemSanPham"/>
+        <activity android:name=".ui.SanPham.GioHang"
+            android:parentActivityName=".ui.SanPham.ChiTietSanPham"/>
+        <activity
+            android:name=".ui.SanPham.SuaSanPham"
+            android:parentActivityName=".ui.SanPham.ChiTietSanPham" />
+        <activity
+            android:name=".ui.SanPham.ChiTietSanPham"
+            android:parentActivityName=".ui.SanPham.SanPhamFragment" />
+        <activity
+            android:name=".ui.SanPham.GiaNhapSanPham"
+            android:parentActivityName=".ui.SanPham.ThemSanPham" />
+        <activity
+            android:name=".ui.SanPham.ThemSanPham"
+            android:parentActivityName=".ui.SanPham.SanPhamFragment" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SplashSreenActivity">
@@ -21,7 +39,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
