@@ -11,6 +11,7 @@ public class SplashSreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("QUẢN LÝ BÁN HÀNG");
         setContentView(R.layout.activity_splash_sreen);
         new Handler().postDelayed(new Runnable() {
             @Override

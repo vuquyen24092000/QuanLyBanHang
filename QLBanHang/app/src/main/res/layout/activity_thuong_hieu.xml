@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context=".ui.NguoiDung.NguoiDungFragment">
+    tools:context=".thuonghieu.ThuongHieuActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcViewNguoiDung"
+        android:id="@+id/rcViewTH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -29,5 +28,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.961"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

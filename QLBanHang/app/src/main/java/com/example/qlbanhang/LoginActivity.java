@@ -1,6 +1,7 @@
 package com.example.qlbanhang;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.location.LocationManager;
@@ -10,15 +11,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.qlbanhang.ui.NguoiDung.Database;
+
 public class LoginActivity extends AppCompatActivity {
     EditText edtUsername, edtPassword;
-
+    Database database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Đăng nhập");
         setContentView(R.layout.activity_login);
         edtUsername=findViewById(R.id.edtUsername);
         edtPassword=findViewById(R.id.edtPassword);
+        database = Room.databaseBuilder(getApplicationContext(), Database.class, "NguoiDung.db").allowMainThreadQueries().build();
     }
 
     public void logIn(View view) {
@@ -37,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 }
-            }, 1000);
+            }, 500);
         }
 
     }
