@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
     tools:context=".SignUpActivity">
 
-
     <TextView
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
         android:textColor="#00D463"
         android:textSize="36dp"
         android:id="@+id/textView4"
@@ -49,7 +49,8 @@
         android:inputType="textPersonName"
         android:hint="Ghi chú" />
     <Button
-        android:onClick="dangKi"
+        android:layout_gravity="center"
+        android:onClick="dangKy"
         android:layout_marginTop="32dp"
         android:background="#00D463"
         android:textColor="#ffffff"
