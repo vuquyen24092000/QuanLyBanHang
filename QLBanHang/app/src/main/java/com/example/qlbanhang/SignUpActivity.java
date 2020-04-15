@@ -17,11 +17,17 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("Đăng kí");
         setContentView(R.layout.activity_signup);
+<<<<<<< HEAD
+        edUsername=findViewById(R.id.edtUsername);
+        edPassword=findViewById(R.id.edtPassword);
+
+=======
         edUsername = findViewById(R.id.edUsername);
         edPassword = findViewById(R.id.edPassword);
         edRepassword = findViewById(R.id.edRePassword);
         edHoten = findViewById(R.id.edHoten);
         edGhiChu = findViewById(R.id.edGhiChu);
+>>>>>>> upstream/master
     }
 
     public void dangKy(View view) {
