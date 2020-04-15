@@ -1,14 +1,15 @@
-package com.example.reddragon.assduan;
+package com.example.qlbanhang;
 
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class Listthongke extends AppCompatActivity {
     TextView tvNgay, tvThang, tvNam;
-    HoadonchitietDAO hoaDonChiTietDAO;
+    //HoadonchitietDAO hoaDonChiTietDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,11 +19,11 @@ public class Listthongke extends AppCompatActivity {
         tvNgay = (TextView) findViewById(R.id.tvThongKeNgay);
         tvThang = (TextView) findViewById(R.id.tvThongKeThang);
         tvNam = (TextView) findViewById(R.id.tvThongKeNam);
-        hoaDonChiTietDAO = new HoadonchitietDAO(this);
-        tvNgay.setText("Hôm nay      : " + hoaDonChiTietDAO.getDoanhThuTheoNgay());
-        tvThang.setText("Tháng này   : " + hoaDonChiTietDAO.getDoanhThuTheoThang());
-        tvNam.setText("Năm này       : " + hoaDonChiTietDAO.getDoanhThuTheoNam());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        hoaDonChiTietDAO = new HoadonchitietDAO(this);
+//        tvNgay.setText("Hôm nay      : " + hoaDonChiTietDAO.getDoanhThuTheoNgay());
+//        tvThang.setText("Tháng này   : " + hoaDonChiTietDAO.getDoanhThuTheoThang());
+//        tvNam.setText("Năm này       : " + hoaDonChiTietDAO.getDoanhThuTheoNam());
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView text = (TextView) findViewById(R.id.text);;
         Typeface type=Typeface.createFromAsset(getAssets(), "fonts/f.ttf");

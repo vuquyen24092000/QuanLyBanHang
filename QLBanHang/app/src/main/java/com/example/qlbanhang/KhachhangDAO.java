@@ -1,13 +1,10 @@
-package com.example.reddragon.assduan.DAO;
+package com.example.qlbanhang;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
-import com.example.reddragon.assduan.Database.DatabaseHelper;
-import com.example.reddragon.assduan.Dulieu.Khachhang;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.reddragon.assduan.Adapter;
+package com.example.qlbanhang;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,9 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.reddragon.assduan.DAO.HoadonDAO;
-import com.example.reddragon.assduan.Dulieu.Hoadon;
-import com.example.reddragon.assduan.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,7 +24,7 @@ public class HoadonAdapter  extends BaseAdapter implements Filterable {
     public Activity context;
     public LayoutInflater inflater;
     HoadonDAO hoadonDAO;
-    HoadonchitietDAO hoaDonChiTietDAO;
+    //HoadonchitietDAO hoaDonChiTietDAO;
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     public HoadonAdapter(Activity context, List<Hoadon> arrayHoaDon) {
         super();
@@ -36,7 +33,7 @@ public class HoadonAdapter  extends BaseAdapter implements Filterable {
         this.arrSortHoaDon = arrayHoaDon;
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         hoadonDAO = new HoadonDAO(context);
-        hoaDonChiTietDAO = new HoadonchitietDAO(context);
+        //hoaDonChiTietDAO = new HoadonchitietDAO(context);
     }
     @Override
     public int getCount() {
@@ -71,15 +68,15 @@ public class HoadonAdapter  extends BaseAdapter implements Filterable {
             holder.imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (hoaDonChiTietDAO.checkHoaDon(arrHoaDon.get(position).getMaHoaDon())){
-                        Toast.makeText(context,"Bạn phải xoá hoá đơn chi tiết trước khi xoá hoá đơn này",Toast.LENGTH_LONG).show();
-                    }else {
-
-                        hoadonDAO.deleteHoaDonByID(arrHoaDon.get(position).getMaHoaDon());
-                        arrHoaDon.remove(position);
-                        Toast.makeText(context,"Xóa thành công",Toast.LENGTH_LONG).show();
-                        notifyDataSetChanged();
-                    }
+//                    if (hoaDonChiTietDAO.checkHoaDon(arrHoaDon.get(position).getMaHoaDon())){
+//                        Toast.makeText(context,"Bạn phải xoá hoá đơn chi tiết trước khi xoá hoá đơn này",Toast.LENGTH_LONG).show();
+//                    }else {
+//
+//                        hoadonDAO.deleteHoaDonByID(arrHoaDon.get(position).getMaHoaDon());
+//                        arrHoaDon.remove(position);
+//                        Toast.makeText(context,"Xóa thành công",Toast.LENGTH_LONG).show();
+//                        notifyDataSetChanged();
+//                    }
                 }
             });
             convertView.setTag(holder);
@@ -87,7 +84,7 @@ public class HoadonAdapter  extends BaseAdapter implements Filterable {
         else
             holder=(ViewHolder)convertView.getTag();
         Hoadon _entry = (Hoadon) arrHoaDon.get(position);
-        holder.img.setImageResource(R.drawable.hdicon);
+        //holder.img.setImageResource(R.drawable.hdicon);
         holder.txtMaHoaDon.setText(_entry.getMaHoaDon());
         holder.txtNgayMua.setText(sdf.format(_entry.getNgayMua()));
         return convertView;

@@ -1,25 +1,18 @@
-package com.example.reddragon.assduan;
+package com.example.qlbanhang;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.reddragon.assduan.Adapter.KhachhangAdapter;
-import com.example.reddragon.assduan.DAO.KhachhangDAO;
-import com.example.reddragon.assduan.Dulieu.Khachhang;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Listkhachhang extends AppCompatActivity {
-    public static List<com.example.reddragon.assduan.Dulieu.Khachhang> dsKhachhang = new ArrayList<>();
+    public static List<Khachhang> dsKhachhang = new ArrayList<>();
     ListView lvKhachhang;
     KhachhangAdapter adapter = null;
     KhachhangDAO khachhangDAO;
@@ -53,42 +46,42 @@ public class Listkhachhang extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menukhachhang, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.addd:
-                Intent intent = new Intent(Listkhachhang.this, Khachhang.class);
-                startActivity(intent);
-                return (true);
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-
-            default:break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        dsKhachhang.clear();
-        dsKhachhang = khachhangDAO.getAllKhachhang();
-        adapter.changeDataset(dsKhachhang);
-    }
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menucontext, menu);
-        menu.setHeaderTitle("Chọn thông tin");
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menukhachhang, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case R.id.addd:
+//                Intent intent = new Intent(Listkhachhang.this, Khachhang.class);
+//                startActivity(intent);
+//                return (true);
+//            case android.R.id.home:
+//                onBackPressed();
+//                return true;
+//
+//            default:break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        dsKhachhang.clear();
+//        dsKhachhang = khachhangDAO.getAllKhachhang();
+//        adapter.changeDataset(dsKhachhang);
+//    }
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menucontext, menu);
+//        menu.setHeaderTitle("Chọn thông tin");
+//    }
 //    @Override
 //    public boolean onContextItemSelected(MenuItem item) {
 //        switch(item.getItemId()) {

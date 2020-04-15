@@ -1,11 +1,8 @@
-package com.example.reddragon.assduan.Database;
+package com.example.qlbanhang;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.example.reddragon.assduan.DAO.HoadonDAO;
-import com.example.reddragon.assduan.DAO.KhachhangDAO;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "dbBookManager";
@@ -19,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(KhachhangDAO.SQL_KHACH_HANG);
 
         db.execSQL(HoadonDAO.SQL_HOA_DON);
-        db.execSQL(HoadonchitietDAO.SQL_HOA_DON_CHI_TIET);
+        //db.execSQL(HoadonchitietDAO.SQL_HOA_DON_CHI_TIET);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -27,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("Drop table if exists "+KhachhangDAO.TABLE_NAME);
 
         db.execSQL("Drop table if exists "+HoadonDAO.TABLE_NAME);
-        db.execSQL("Drop table if exists "+HoadonchitietDAO.TABLE_NAME);
+        //db.execSQL("Drop table if exists "+HoadonchitietDAO.TABLE_NAME);
         onCreate(db);
     }
 }

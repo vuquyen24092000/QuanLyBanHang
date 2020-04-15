@@ -1,7 +1,6 @@
-package com.example.reddragon.assduan;
+package com.example.qlbanhang;
 
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -11,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.reddragon.assduan.DAO.KhachhangDAO;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Themkhachhang extends AppCompatActivity {
     Button btnThemKhachhang;
@@ -42,7 +41,7 @@ public class Themkhachhang extends AppCompatActivity {
 
     public void themkhachhang(View view) {
         khachhangDAO = new KhachhangDAO(Themkhachhang.this);
-        com.example.reddragon.assduan.Dulieu.Khachhang user = new com.example.reddragon.assduan.Dulieu.Khachhang(edMa.getText().toString(), edTen.getText().toString(),edS.getText().toString(),edE.getText().toString(),edDia.getText().toString());
+        Khachhang user = new Khachhang(edMa.getText().toString(), edTen.getText().toString(),edS.getText().toString(),edE.getText().toString(),edDia.getText().toString());
         try {
             if (validateForm()>0){
                 if (khachhangDAO.inserKhachhang(user) > 0) {

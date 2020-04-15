@@ -1,4 +1,4 @@
-package com.example.reddragon.assduan.Adapter;
+package com.example.qlbanhang;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,9 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.reddragon.assduan.DAO.KhachhangDAO;
-import com.example.reddragon.assduan.Dulieu.Khachhang;
-import com.example.reddragon.assduan.R;
 
 import java.util.List;
 
@@ -71,13 +68,13 @@ public class KhachhangAdapter extends BaseAdapter {
         else
             holder=(ViewHolder)convertView.getTag();
         Khachhang _entry = (Khachhang) arrKhachhang.get(position);
-        if (position % 3 ==0) {
-            holder.img.setImageResource(R.drawable.ss);
-        }else if (position % 3 == 1){
-            holder.img.setImageResource(R.drawable.kk);
-        }else {
-            holder.img.setImageResource(R.drawable.bookstack);
-        }
+//        if (position % 3 ==0) {
+//            holder.img.setImageResource(R.drawable.ss);
+//        }else if (position % 3 == 1){
+//            holder.img.setImageResource(R.drawable.kk);
+//        }else {
+//            holder.img.setImageResource(R.drawable.bookstack);
+//        }
         holder.txtMaKhachhang.setText(_entry.getMaKhachhang());
         holder.txtTenKhachhang.setText(_entry.getTenKhachhang());
         return convertView;

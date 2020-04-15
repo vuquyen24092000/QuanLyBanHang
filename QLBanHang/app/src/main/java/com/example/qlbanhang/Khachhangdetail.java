@@ -1,8 +1,7 @@
-package com.example.reddragon.assduan;
+package com.example.qlbanhang;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,8 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.reddragon.assduan.DAO.KhachhangDAO;
-import com.example.reddragon.assduan.Dulieu.Khachhang;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Khachhangdetail extends AppCompatActivity {
     EditText edMakhachhang,edTenkhachhang,edSdt,edEmail,edDiachi;

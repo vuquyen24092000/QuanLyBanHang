@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-=======
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> upstream/master
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
+
     tools:context=".ui.SanPham.ThemThuongHieu">
 
     <ImageView
@@ -71,20 +69,16 @@
         android:layout_width="wrap_content"
         android:layout_height="29dp"
         android:layout_marginTop="60dp"
+        android:background="#00D463"
         android:text="Thêm"
         android:textColor="#FFFFFF"
         android:textSize="15dp"
-        android:background="#00D463"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgPictureTH"
         app:layout_constraintVertical_bias="0.963" />
-</androidx.constraintlayout.widget.ConstraintLayout>
-=======
-    android:orientation="vertical"
-    tools:context=".thuonghieu.ThemThuongHieuActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -108,32 +102,33 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_marginBottom="16dp"
-        android:layout_gravity="center"
+        android:id="@+id/imgTH"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:id="@+id/imgTH"/>
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
 
     <EditText
         android:id="@+id/edMaTH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nhập mã thương hiệu"/>
+        android:hint="Nhập mã thương hiệu" />
+
     <EditText
         android:id="@+id/edTenTH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nhập tên thương hiệu"/>
+        android:hint="Nhập tên thương hiệu" />
 
     <Button
-        android:onClick="themTH"
         android:id="@+id/btnThemTH"
-        android:background="#00D463"
-        android:textColor="#ffffff"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thêm"/>
-
+        android:layout_gravity="center"
+        android:background="#00D463"
+        android:onClick="themTH"
+        android:text="Thêm"
+        android:textColor="#ffffff" />
 </LinearLayout>
->>>>>>> upstream/master
+
+

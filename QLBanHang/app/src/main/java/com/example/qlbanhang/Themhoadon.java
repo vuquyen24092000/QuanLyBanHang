@@ -1,10 +1,7 @@
-package com.example.reddragon.assduan;
+package com.example.qlbanhang;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,8 +10,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.reddragon.assduan.DAO.HoadonDAO;
-import com.example.reddragon.assduan.Dulieu.Hoadon;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -64,11 +61,11 @@ public class Themhoadon extends AppCompatActivity implements DatePickerDialog.On
                 Hoadon hoaDon = new Hoadon(edMaHoaDon.getText().toString(),sdf.parse(edNgayMua.getText().toString()));
                 if (hoaDonDAO.inserHoaDon(hoaDon) > 0) {
                     Toast.makeText(getApplicationContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Themhoadon.this,Hoadondetail.class);
-                    Bundle b = new Bundle();
-                    b.putString("MAHOADON", edMaHoaDon.getText().toString());
-                    intent.putExtras(b);
-                    startActivity(intent);
+//                    Intent intent = new Intent(Themhoadon.this,Hoadondetail.class);
+//                    Bundle b = new Bundle();
+//                    b.putString("MAHOADON", edMaHoaDon.getText().toString());
+//                    intent.putExtras(b);
+//                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Thêm thất bại",
                             Toast.LENGTH_SHORT).show();

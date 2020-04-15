@@ -1,4 +1,4 @@
-package com.example.reddragon.assduan.Dulieu;
+package com.example.qlbanhang;
 
 public class Khachhang {
     private String maKhachhang;
