@@ -27,8 +27,8 @@ import java.io.IOException;
 public class ThemThuongHieuActivity extends AppCompatActivity {
     ImageView imgTH;
     EditText edTenTH, edMaTH;
-    Button btnThemTH;
-    ImageButton btnCamera, btnImage;
+    Button btnThemTH,btnImage;
+    ImageButton btnCamera;
     Bitmap selectedBitmap;
 
     @Override

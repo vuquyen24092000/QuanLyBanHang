@@ -12,10 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SanPham.ThemThuongHieu"
-            android:parentActivityName=".ui.SanPham.ThuongHieu"/>
-        <activity android:name=".ui.SanPham.ThuongHieu"
-            android:parentActivityName=".ui.SanPham.ThemSanPham"/>
         <activity android:name=".ui.SanPham.GioHang"
             android:parentActivityName=".ui.SanPham.ChiTietSanPham"/>
         <activity

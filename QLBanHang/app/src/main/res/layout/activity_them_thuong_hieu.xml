@@ -6,81 +6,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".thuonghieu.ThemThuongHieuActivity">
 
-    tools:context=".ui.SanPham.ThemThuongHieu">
-
-    <ImageView
-        android:id="@+id/imgPictureTH"
-        android:layout_width="100dp"
-        android:layout_height="104dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.119"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
-
-    <Button
-        android:id="@+id/btn_taiAnhTH"
-        android:layout_width="89dp"
-        android:layout_height="26dp"
-        android:background="#00D463"
-        android:text="Tải ảnh lên"
-        android:textColor="#FFFFFF"
-        android:textSize="10dp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgPictureTH"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
-
-    <EditText
-        android:id="@+id/ed_nhapMaTH"
-        android:layout_width="327dp"
-        android:layout_height="49dp"
-        android:ems="10"
-        android:hint="Nhập mã thương hiệu"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.619"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgPictureTH"
-        app:layout_constraintVertical_bias="0.097" />
-
-    <EditText
-        android:id="@+id/ed_nhapTenTH"
-        android:layout_width="327dp"
-        android:layout_height="49dp"
-        android:ems="10"
-        android:hint="Nhập tên thương hiệu"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.619"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgPictureTH"
-        app:layout_constraintVertical_bias="0.222" />
-
-    <Button
-        android:id="@+id/btn_themTH"
-        android:layout_width="wrap_content"
-        android:layout_height="29dp"
-        android:layout_marginTop="60dp"
-        android:background="#00D463"
-        android:text="Thêm"
-        android:textColor="#FFFFFF"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgPictureTH"
-        app:layout_constraintVertical_bias="0.963" />
-
-    <LinearLayout
+  <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -93,12 +21,15 @@
             android:layout_height="wrap_content"
             android:src="@drawable/camera" />
 
-        <ImageButton
+        <Button
+            android:textColor="#ffffff"
+            android:background="#00D463"
             android:id="@+id/btnImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
-            android:src="@drawable/image" />
+            android:text="Tải ảnh lên"
+             />
     </LinearLayout>
 
     <ImageView

@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.qlbanhang.R;
+import com.example.qlbanhang.thuonghieu.ThuongHieuActivity;
 
 public class ThemSanPham extends AppCompatActivity {
     private EditText ed_nsx;
@@ -64,8 +65,8 @@ public class ThemSanPham extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
-        if (id == R.id.it_ThuongHieu){
-            Intent intent=new Intent(ThemSanPham.this,ThuongHieu.class);
+        if (id == R.id.menuThuongHieu){
+            Intent intent=new Intent(ThemSanPham.this, ThuongHieuActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

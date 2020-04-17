@@ -19,6 +19,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.qlbanhang.R;
+import com.example.qlbanhang.thuonghieu.ThuongHieuActivity;
 
 public class SanPhamFragment extends Fragment {
 
@@ -53,6 +54,10 @@ public class SanPhamFragment extends Fragment {
         }
         if (id == R.id.it_themSp){
             Intent intent=new Intent(getActivity(),ThemSanPham.class);
+            startActivity(intent);
+        }
+        if (id == R.id.menuThuongHieu){
+            Intent intent=new Intent(getActivity(), ThuongHieuActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
