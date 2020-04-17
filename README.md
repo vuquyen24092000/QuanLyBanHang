@@ -1,4 +1,5 @@
 # QuanLyBanHang
+#Link Firebase: https://quanlibanhang-1d8ea.firebaseio.com/
 I. Phân tích thị trường:  
 
 Hiện nay, mua sắm online đang là 1 hình thức khá phổ biến. Mỹ phẩm cũng là 1 trong những mặt hàng mà khách hàng ưa chuộng khi mua sắm online.
