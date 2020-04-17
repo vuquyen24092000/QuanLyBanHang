@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignupActivity">
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:textColor="#00D463"
+        android:textSize="36dp"
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng kí" />
+
+    <EditText
+        android:layout_marginTop="32dp"
+        android:id="@+id/edUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Tên đăng nhập" />
+    <EditText
+        android:id="@+id/edPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Nhập mật khẩu" />
+    <EditText
+        android:id="@+id/edRePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Nhập lại mật khẩu" />
+    <EditText
+        android:id="@+id/edHoten"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Nhập họ tên" />
+    <EditText
+        android:id="@+id/edGhiChu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Ghi chú" />
+    <Button
+        android:layout_gravity="center"
+        android:onClick="dangKy"
+        android:layout_marginTop="32dp"
+        android:background="#00D463"
+        android:textColor="#ffffff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng kí"/>
+
+</LinearLayout>

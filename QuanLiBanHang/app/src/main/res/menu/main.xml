@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menuThuongHieu"
+        android:orderInCategory="100"
+        android:title="Thương hiệu"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/it_suasp"
+        android:title="Sửa sản phẩm" />
+</menu>

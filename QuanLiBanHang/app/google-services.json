@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "40155788053",
+    "firebase_url": "https://quanlibanhang-1d8ea.firebaseio.com",
+    "project_id": "quanlibanhang-1d8ea",
+    "storage_bucket": "quanlibanhang-1d8ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40155788053:android:c8549703ecd10424bcef1c",
+        "android_client_info": {
+          "package_name": "com.example.quanlibanhang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40155788053-hm8fj4j63femj17ssmhps5bf744659i3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTIAlLdLXAaohmAoknlz9LWJxmH-wcp-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40155788053-hm8fj4j63femj17ssmhps5bf744659i3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

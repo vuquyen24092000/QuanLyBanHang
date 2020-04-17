@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.quanlibanhang.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home_second" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_home_second"
+        android:name="com.example.quanlibanhang.ui.home.HomeSecondFragment"
+        android:label="@string/home_second"
+        tools:layout="@layout/fragment_home_second">
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+            app:destination="@id/nav_home" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_nguoidung"
+        android:name="com.example.quanlibanhang.ui.nguoidung.NguoiDungFragment"
+        android:label="Người Dùng"
+        tools:layout="@layout/fragment_nguoi_dung" />
+    <fragment
+        android:id="@+id/nav_sanpham"
+        android:name="com.example.quanlibanhang.ui.sanpham.SanPhamFragment"
+        android:label="Sản Phẩm"
+        tools:layout="@layout/fragment_san_pham" />
+    <fragment
+        android:id="@+id/nav_hoadon"
+        android:name="com.example.quanlibanhang.ui.hoadon.HoaDonFragment"
+        android:label="Hóa đơn"
+        tools:layout="@layout/fragment_hoa_don" />
+
+    <fragment
+        android:id="@+id/nav_thongke"
+        android:name="com.example.quanlibanhang.ui.thongke.ThongKeFragment"
+        android:label="Thống kê"
+        tools:layout="@layout/fragment_thong_ke" />
+    <fragment
+        android:id="@+id/nav_thoat"
+        android:name="com.example.quanlibanhang.ui.thoat.ThoatFragment"
+        android:label="Thoát"
+        tools:layout="@layout/fragment_thoat" />
+</navigation>
