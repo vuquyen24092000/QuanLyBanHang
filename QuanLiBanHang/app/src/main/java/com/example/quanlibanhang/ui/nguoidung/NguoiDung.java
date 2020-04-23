@@ -1,25 +1,10 @@
 package com.example.quanlibanhang.ui.nguoidung;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-@Entity(tableName = "NguoiDung")
 public class NguoiDung {
-    @NonNull
-    @PrimaryKey
-    @ColumnInfo(name = "username")
-    private String username;
+    String username, password, hoTen, ghiChu;
 
-    @ColumnInfo(name = "password")
-    private String password;
-
-    @ColumnInfo(name = "hoTen")
-    private String hoTen;
-
-    @ColumnInfo(name = "ghiChu")
-    private String ghiChu;
+    public NguoiDung() {
+    }
 
     public NguoiDung(String username, String password, String hoTen, String ghiChu) {
         this.username = username;
@@ -28,7 +13,7 @@ public class NguoiDung {
         this.ghiChu = ghiChu;
     }
 
-    public String  getUsername() {
+    public String getUsername() {
         return username;
     }
 

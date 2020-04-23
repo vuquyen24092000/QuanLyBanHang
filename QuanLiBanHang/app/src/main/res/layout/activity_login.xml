@@ -30,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lưu mật khẩu" />
+
     <LinearLayout
         android:layout_marginTop="8dp"
         android:gravity="center"
@@ -54,5 +55,7 @@
 
 
     </LinearLayout>
+
+
 
 </LinearLayout>

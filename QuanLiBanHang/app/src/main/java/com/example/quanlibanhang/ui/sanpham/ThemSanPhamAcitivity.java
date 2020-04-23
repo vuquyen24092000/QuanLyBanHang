@@ -73,6 +73,15 @@ public class ThemSanPhamAcitivity extends AppCompatActivity implements DatePicke
         final StorageReference storageRef = storage.getReferenceFromUrl("gs://quanlibanhang-1d8ea.appspot.com");
         firebaseDB = new FirebaseDB(mData);
 
+        try {
+            Intent intent = getIntent();
+            Bundle b = intent.getBundleExtra("bundleSP");
+            edMaSP.setText(b.getString("maSP"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, firebaseDB.retrieve()));
 
         btnChoosePic.setOnClickListener(new View.OnClickListener() {
@@ -112,21 +121,29 @@ public class ThemSanPhamAcitivity extends AppCompatActivity implements DatePicke
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                        Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
-                        Toast.makeText(ThemSanPhamAcitivity.this, "Thành công", Toast.LENGTH_LONG).show();
+                        if (taskSnapshot.getMetadata() != null) {
+                            if (taskSnapshot.getMetadata().getReference() != null) {
+                                Task<Uri> downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                                downloadUrl.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        SanPham sanPham = new SanPham(uri.toString(), edMaSP.getText().toString(), edTenSP.getText().toString(), String.valueOf(spinner.getSelectedItem()), edNSX.getText().toString(), edHSD.getText().toString(), edMoTa.getText().toString(), Double.parseDouble(edGiaNhap.getText().toString()), Double.parseDouble(edGiaBan.getText().toString()));
+                                        mData.child("SanPham").push().setValue(sanPham, new DatabaseReference.CompletionListener() {
+                                            @Override
+                                            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                                if (databaseError == null) {
+                                                    Toast.makeText(ThemSanPhamAcitivity.this, "Lưu dữ liệu thành công", Toast.LENGTH_LONG).show();
+                                                } else {
+                                                    Toast.makeText(ThemSanPhamAcitivity.this, "Lỗi!!!" + databaseError, Toast.LENGTH_LONG).show();
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
 
-                        //tạo node trong database
-                        SanPham sanPham = new SanPham(String.valueOf(downloadUrl), edMaSP.getText().toString(), edTenSP.getText().toString(), String.valueOf(spinner.getSelectedItem()), edNSX.getText().toString(), edHSD.getText().toString(), edMoTa.getText().toString(), Double.parseDouble(edGiaNhap.getText().toString()), Double.parseDouble(edGiaBan.getText().toString()));
-                        mData.child("SanPham").push().setValue(sanPham, new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                if (databaseError == null) {
-                                    Toast.makeText(ThemSanPhamAcitivity.this, "Lưu dữ liệu thành công", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(ThemSanPhamAcitivity.this, "Lỗi!!!" + databaseError, Toast.LENGTH_LONG).show();
-                                }
                             }
-                        });
+                        }
+
 
                     }
                 });
@@ -163,7 +180,7 @@ public class ThemSanPhamAcitivity extends AppCompatActivity implements DatePicke
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, REQUEST_CODE_IMAGE);
         } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},REQUEST_CODE_IMAGE);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_IMAGE);
         }
 
     }

@@ -1,4 +1,4 @@
-package com.example.quanlibanhang.thuonghieu;
+package com.example.quanlibanhang.ui.hoadon;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,34 +11,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.example.quanlibanhang.R;
+import com.example.quanlibanhang.thuonghieu.ThemThuongHieuActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ThuongHieuAdapter extends BaseAdapter {
+public class HoaDonAdapter extends BaseAdapter {
     Context context;
-    List<ThuongHieu> arrayList;
-    int myLayout;
+    List<HoaDon> list;
+    int layout;
 
-    public ThuongHieuAdapter(Context context, List<ThuongHieu> arrayList, int myLayout) {
+
+    public HoaDonAdapter(Context context, List<HoaDon> list, int layout) {
         this.context = context;
-        this.arrayList = arrayList;
-        this.myLayout = myLayout;
+        this.list = list;
+        this.layout = layout;
     }
 
     @Override
     public int getCount() {
-        return arrayList.size();
+        return list.size();
     }
-
 
     @Override
     public Object getItem(int position) {
-        return arrayList.get(position);
+        return list.get(position);
     }
 
     @Override
@@ -47,8 +46,8 @@ public class ThuongHieuAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        ImageView imgTH, imgDelete, imgUpdate;
-        TextView maTH, tenTH;
+        ImageView imgDelete, imgUpdate;
+        TextView tvTenHD, tvTenKH, tvTongTien, tvGhiChu;
     }
 
     @Override
@@ -57,10 +56,11 @@ public class ThuongHieuAdapter extends BaseAdapter {
         ViewHolder viewHolder = new ViewHolder();
 
         if (convertView == null) {
-            convertView = inflater.inflate(myLayout, null);
-            viewHolder.maTH = (TextView) convertView.findViewById(R.id.tvMaTH);
-            viewHolder.tenTH = (TextView) convertView.findViewById(R.id.tvTenTH);
-            viewHolder.imgTH = (ImageView) convertView.findViewById(R.id.imgTH);
+            convertView = inflater.inflate(layout, null);
+            viewHolder.tvTenHD = (TextView) convertView.findViewById(R.id.tvTenHD);
+            viewHolder.tvTenKH = (TextView) convertView.findViewById(R.id.tvKH);
+            viewHolder.tvTongTien = (TextView) convertView.findViewById(R.id.tvTongTien);
+            viewHolder.tvGhiChu = (TextView) convertView.findViewById(R.id.tvGhiChuHD);
             viewHolder.imgDelete = (ImageView) convertView.findViewById(R.id.imgDelete);
             viewHolder.imgUpdate = (ImageView) convertView.findViewById(R.id.imgUpdate);
             convertView.setTag(viewHolder);
@@ -68,27 +68,27 @@ public class ThuongHieuAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.maTH.setText(arrayList.get(position).maTH);
-        viewHolder.tenTH.setText(arrayList.get(position).tenTH);
-        Picasso.get().load(arrayList.get(position).linkAnh).into(viewHolder.imgTH);
+        viewHolder.tvTenHD.setText(list.get(position).tenHD);
+        viewHolder.tvTenKH.setText(list.get(position).tenKH);
+        viewHolder.tvTongTien.setText(list.get(position).tongTien);
+        viewHolder.tvGhiChu.setText(list.get(position).ghiChuHD);
         viewHolder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
-                mData.child("ThuongHieu").removeValue();
+                mData.child("HoaDon").removeValue();
                 Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
             }
         });
-
-
         viewHolder.imgUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, ThemThuongHieuActivity.class);
+                Intent intent = new Intent(context, ThemHoaDonActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("maTH", arrayList.get(position).maTH);
-                intent.putExtra("bundleTH", bundle);
+                bundle.putString("maHD", list.get(position).maHD);
+                intent.putExtra("bundleHD", bundle);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });

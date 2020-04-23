@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -22,7 +24,7 @@ import com.example.quanlibanhang.ui.sanpham.SanPhamFragment;
 import com.example.quanlibanhang.ui.thongke.ThongKeFragment;
 
 public class HomeFragment extends Fragment {
-    ImageView user, product, bill, total;
+    WebView webView;
 
     FragmentManager fragmentManager;
 
@@ -30,35 +32,11 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-        fragmentManager = getActivity().getSupportFragmentManager();
+        webView = root.findViewById(R.id.webview);
+        webView.loadUrl("https://kenh14.vn/my-pham.html");
+        webView.setWebViewClient(new WebViewClient());
         return root;
     }
-
-//    public void callFragment(View view) {
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        Fragment fragment = null;
-//        switch (view.getId()) {
-//            case R.id.img1:
-//                fragment = new NguoiDungFragment();
-//
-//                break;
-//            case R.id.img2:
-//                fragment = new SanPhamFragment();
-//
-//                break;
-//            case R.id.img3:
-//                fragment = new HoaDonFragment();
-//
-//                break;
-//            case R.id.img4:
-//                fragment = new ThongKeFragment();
-//
-//                break;
-//        }
-//        fragmentTransaction.add(R.id.frame, fragment);
-//        fragmentTransaction.commit();
-//    }
 
 
 }

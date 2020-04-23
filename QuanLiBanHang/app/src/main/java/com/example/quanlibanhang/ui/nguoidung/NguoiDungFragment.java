@@ -6,64 +6,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.example.quanlibanhang.R;
+import com.example.quanlibanhang.ui.hoadon.HoaDon;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NguoiDungFragment extends Fragment {
-
-
     ImageView imgAdd;
-    RecyclerView recyclerView;
-    NguoiDungAdapter nguoiDungAdapter;
+    ListView lvList;
+    NguoiDungAdapter adapter;
     List<NguoiDung> list;
-    NguoiDungDAO nguoiDungDAO;
-    Database database;
+    DatabaseReference mData;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_nguoi_dung, container, false);
         imgAdd = root.findViewById(R.id.btnAdd);
-        recyclerView = root.findViewById(R.id.rcViewNguoiDung);
-        nguoiDungDAO = new NguoiDungDAO() {
-            @Override
-            public List<NguoiDung> getAll() {
-                return getAll();
-            }
+        lvList = root.findViewById(R.id.lvNguoiDung);
+        mData = FirebaseDatabase.getInstance().getReference();
 
-            @Override
-            public long[] insertNguoiDung(NguoiDung... nguoiDung) {
-                return new long[0];
-            }
-
-            @Override
-            public int deleteNguoiDung(NguoiDung nguoiDung) {
-                return 0;
-            }
-
-            @Override
-            public int updateNguoiDung(NguoiDung nguoiDung) {
-
-                return 0;
-            }
-        };
-        database = Room.databaseBuilder(getActivity().getApplicationContext(),Database.class,"NguoiDung").allowMainThreadQueries().build();
-        list=database.nguoiDungDAO().getAll();
-        nguoiDungAdapter=new NguoiDungAdapter(list,getActivity().getApplicationContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        nguoiDungAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(nguoiDungAdapter);
-
-
-
+        list = new ArrayList<>();
+        adapter=new NguoiDungAdapter(getActivity().getApplicationContext(),list,R.layout.item_user);
+        lvList.setAdapter(adapter);
+        LoadData();
         imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +49,41 @@ public class NguoiDungFragment extends Fragment {
             }
         });
 
-
         return root;
+    }
+
+    private void LoadData() {
+        mData.child("NguoiDung").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                NguoiDung nguoiDung = dataSnapshot.getValue(NguoiDung.class);
+                list.add(new NguoiDung(nguoiDung.username, nguoiDung.password, nguoiDung.hoTen, nguoiDung.ghiChu));
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                HoaDon hoaDon = dataSnapshot.getValue(HoaDon.class);
+                hoaDon.setMaHD(dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                list.remove(dataSnapshot.getKey());
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String key = dataSnapshot.getKey();
+                list.remove(key);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

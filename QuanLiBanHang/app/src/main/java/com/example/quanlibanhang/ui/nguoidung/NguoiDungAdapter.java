@@ -7,107 +7,95 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 
 import com.example.quanlibanhang.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class NguoiDungAdapter extends RecyclerView.Adapter<NguoiDungAdapter.ViewHolder> {
-    List<NguoiDung> list;
+public class NguoiDungAdapter extends BaseAdapter {
     Context context;
-    NguoiDungDAO nguoiDungDAO;
-    Database database;
+    List<NguoiDung> list;
+    int layout;
 
-    public NguoiDungAdapter(List<NguoiDung> list, Context context) {
-        this.list = list;
+    public NguoiDungAdapter(Context context, List<NguoiDung> list, int layout) {
         this.context = context;
-        //database=database = Room.databaseBuilder(getActivity().getApplicationContext(),Database.class,"NguoiDung").allowMainThreadQueries().build();
-        nguoiDungDAO = new NguoiDungDAO() {
-            @Override
-            public List<NguoiDung> getAll() {
-                return getAll();
-            }
-
-            @Override
-            public long[] insertNguoiDung(NguoiDung... nguoiDung) {
-                return new long[0];
-            }
-
-            @Override
-            public int deleteNguoiDung(NguoiDung nguoiDung) {
-                return 0;
-            }
-
-            @Override
-            public int updateNguoiDung(NguoiDung nguoiDung) {
-                return 0;
-            }
-        };
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_user, parent, false);
-        return new ViewHolder(view);
+        this.list = list;
+        this.layout = layout;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        final NguoiDung nguoiDung = list.get(position);
-        holder.tvUsername.setText(nguoiDung.getUsername());
-        holder.tvPassword.setText(nguoiDung.getPassword());
-        holder.tvHoten.setText(nguoiDung.getHoTen());
-        holder.imgDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                list.remove(nguoiDung);
-                nguoiDungDAO.deleteNguoiDung(nguoiDung);
-                notifyDataSetChanged();
-            }
-        });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try{
-                    //context (activity) và du lieu
-                    Context context = v.getContext();
-                    Intent intent=new Intent(context, ThemNguoiDungActivity.class);
-                    Bundle bundle=new Bundle();
-                    bundle.putString("username",list.get(position).getUsername());
-                    intent.putExtra("bundle",bundle);
-                    context.startActivity(intent);
-                } catch (Exception e){
-                    Log.e("Lỗi",nguoiDung.getUsername());
-                }
-
-
-            }
-        });
-    }
-
-    @Override
-    public int getItemCount() {
+    public int getCount() {
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvUsername, tvPassword, tvHoten;
-        ImageView imgDelete;
+    @Override
+    public Object getItem(int position) {
+        return list.get(position);
+    }
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvUsername = itemView.findViewById(R.id.tvUsername);
-            tvPassword = itemView.findViewById(R.id.tvPassword);
-            tvHoten = itemView.findViewById(R.id.tvHoten);
-            imgDelete = itemView.findViewById(R.id.imgDeleteUser);
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ViewHolder viewHolder = new ViewHolder();
+        if (convertView == null) {
+            convertView = inflater.inflate(layout, null);
+            viewHolder.tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
+            viewHolder.tvPassword = (TextView) convertView.findViewById(R.id.tvPassword);
+            viewHolder.tvHoten = (TextView) convertView.findViewById(R.id.tvHoten);
+            viewHolder.imgDelete = (ImageView) convertView.findViewById(R.id.imgDelete);
+            viewHolder.imgUpdate = (ImageView) convertView.findViewById(R.id.imgUpdate);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
+        viewHolder.tvUsername.setText(list.get(position).getUsername());
+        viewHolder.tvPassword.setText(list.get(position).getPassword());
+        viewHolder.tvHoten.setText(list.get(position).getHoTen());
+        viewHolder.imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
+                mData.child("NguoiDung").removeValue();
+                Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+            }
+        });
+        viewHolder.imgUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    //context (activity) và du lieu
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, ThemNguoiDungActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("username", list.get(position).getUsername());
+                    intent.putExtra("bundleND", bundle);
+                    context.startActivity(intent);
+                } catch (Exception e) {
+                    Log.e("Lỗi", e.getMessage());
+                }
+            }
+        });
+        return convertView;
+    }
+
+    public class ViewHolder {
+        TextView tvUsername, tvPassword, tvHoten;
+        ImageView imgDelete, imgUpdate;
     }
 }

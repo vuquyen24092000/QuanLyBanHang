@@ -15,6 +15,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,11 +25,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.quanlibanhang.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,14 +37,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ThemThuongHieuActivity extends AppCompatActivity {
     ImageView imgTH;
-    ListView lvTest;
-    // RecyclerView lvTest;
     EditText edTenTH, edMaTH;
     Button btnThemTH, btnImage;
     ImageButton btnCamera;
@@ -53,9 +52,6 @@ public class ThemThuongHieuActivity extends AppCompatActivity {
     Bitmap bitmap;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     DatabaseReference mData;
-    ArrayList<ThuongHieu> arrayList;
-    ThuongHieuAdapter adapter;
-    // ThuongHieuRecAdapter adapter;
 
 
     @Override
@@ -66,9 +62,16 @@ public class ThemThuongHieuActivity extends AppCompatActivity {
         setTitle("Thêm Thương Hiệu");
         AnhXa();
 
-
         mData = FirebaseDatabase.getInstance().getReference();
         final StorageReference storageRef = storage.getReferenceFromUrl("gs://quanlibanhang-1d8ea.appspot.com");
+
+        try {
+            Intent intent = getIntent();
+            Bundle b = intent.getBundleExtra("bundleTH");
+            edMaTH.setText(b.getString("maTH"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +90,7 @@ public class ThemThuongHieuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
-                final StorageReference mountainsRef = storageRef.child("imageTH" + calendar.getTimeInMillis() + "png");
+                final StorageReference mountainsRef = storageRef.child("imageTH" + calendar.getTimeInMillis() + ".png");
                 imgTH.setDrawingCacheEnabled(true);
                 imgTH.buildDrawingCache();
                 Bitmap bitmap = ((BitmapDrawable) imgTH.getDrawable()).getBitmap();
@@ -106,21 +109,34 @@ public class ThemThuongHieuActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                        Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
-                        Toast.makeText(ThemThuongHieuActivity.this, "Thành công", Toast.LENGTH_LONG).show();
+                        // ...
+                        if (taskSnapshot.getMetadata() != null) {
+                            if (taskSnapshot.getMetadata().getReference() != null) {
+                                Task<Uri> downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                                Toast.makeText(ThemThuongHieuActivity.this, "Thành công", Toast.LENGTH_LONG).show();
+                                downloadUrl.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        ThuongHieu thuongHieu = new ThuongHieu(edMaTH.getText().toString(), edTenTH.getText().toString(), uri.toString());
+                                        Log.d("AA", uri + "");
+                                        //tạo node trong database
+                                        mData.child("ThuongHieu").push().setValue(thuongHieu, new DatabaseReference.CompletionListener() {
+                                            @Override
+                                            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                                if (databaseError == null) {
+                                                    Toast.makeText(ThemThuongHieuActivity.this, "Lưu dữ liệu thành công", Toast.LENGTH_LONG).show();
 
-                        //tạo node trong database
-                        ThuongHieu thuongHieu = new ThuongHieu(edMaTH.getText().toString(), edTenTH.getText().toString(), String.valueOf(downloadUrl));
-                        mData.child("ThuongHieu").push().setValue(thuongHieu, new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                if (databaseError == null) {
-                                    Toast.makeText(ThemThuongHieuActivity.this, "Lưu dữ liệu thành công", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(ThemThuongHieuActivity.this, "Lỗi!!!" + databaseError, Toast.LENGTH_LONG).show();
-                                }
+                                                } else {
+                                                    Toast.makeText(ThemThuongHieuActivity.this, "Lỗi!!!" + databaseError, Toast.LENGTH_LONG).show();
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+
                             }
-                        });
+                        }
+
 
                     }
                 });
@@ -152,7 +168,7 @@ public class ThemThuongHieuActivity extends AppCompatActivity {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, REQUEST_CODE_IMAGE);
         } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},REQUEST_CODE_IMAGE);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_IMAGE);
         }
     }
 

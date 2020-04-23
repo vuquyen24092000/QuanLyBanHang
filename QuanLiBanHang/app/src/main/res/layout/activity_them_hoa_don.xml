@@ -20,6 +20,24 @@
         android:layout_height="wrap_content"
         android:hint="Tên Hóa đơn "
         android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/edTenKH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên khách hàng "
+        android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/edTenSP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên sản phẩm"
+        android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/edUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:inputType="textPersonName" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,14 +54,29 @@
             android:textSize="18dp" />
 
         <Button
-            android:id="@+id/btnPicNSX"
+            android:id="@+id/btnPicDate"
+            android:onClick="datePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
             android:text="Chọn" />
     </LinearLayout>
-
+    <EditText
+        android:id="@+id/edTongTien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tổng hóa đơn "
+        android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/edGhiChuHĐ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ghi chú hóa đơn "
+        android:inputType="textPersonName" />
+<LinearLayout
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <Button
         android:id="@+id/btnThemHD"
         android:layout_width="wrap_content"
@@ -52,4 +85,15 @@
         android:background="#00D463"
         android:text="Thêm"
         android:textColor="#ffffff" />
+    <Button
+        android:layout_marginLeft="16dp"
+        android:id="@+id/btnSuaHD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#00D463"
+        android:text="Cập nhật"
+        android:textColor="#ffffff" />
+</LinearLayout>
+
 </LinearLayout>

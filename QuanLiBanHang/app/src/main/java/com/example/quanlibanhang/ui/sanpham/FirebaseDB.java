@@ -12,7 +12,6 @@ public class FirebaseDB {
 
 
         DatabaseReference db;
-        Boolean saved=null;
 
         public FirebaseDB(DatabaseReference db) {
             this.db = db;
